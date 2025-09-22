@@ -1,0 +1,54 @@
+services:
+  ollama:
+    container_name: ollama_server
+    image: ollama/ollama:latest
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - "11434:11434"
+    command: ["serve"]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:11434 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 20
+    restart: unless-stopped
+    networks:
+      - ollama_net
+
+  chatbot:
+    container_name: wm_chatbot
+    build: .
+    depends_on:
+      ollama:
+        condition: service_healthy
+    ports:
+      - "8501:8501"
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+      OLLAMA_MODEL: qwen:0.5b
+    volumes:
+      - ./data:/app/data
+      - ./faiss_index:/app/faiss_index
+    command: >
+      sh -c "
+      echo 'Waiting for Ollama to be fully ready...';
+      sleep 30;
+      if [ ! -d ./faiss_index ] || [ -z \"$(ls -A ./faiss_index)\" ]; then
+        echo 'FAISS index not found, running ingestion...';
+        python ingest.py;
+      else
+        echo 'FAISS index found, skipping ingestion.';
+      fi &&
+      streamlit run app.py --server.port=8501 --server.address=0.0.0.0
+      "
+    restart: unless-stopped
+    networks:
+      - ollama_net
+
+volumes:
+  ollama_data:
+
+networks:
+  ollama_net:
+    driver: bridge

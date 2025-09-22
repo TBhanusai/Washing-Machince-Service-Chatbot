@@ -1,0 +1,16 @@
+# .gitignore
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# FAISS index (can be large, generated, so often ignored)
+faiss_index/
+
+# Ollama temporary files (if any)
+# .ollama/
+
+# Streamlit
+.streamlit/
+

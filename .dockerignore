@@ -1,0 +1,47 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.env/
+.venv/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Docker / Compose files
+docker-compose*
+compose*
+Dockerfile*
+
+# Logs and local data
+*.log
+*.db
+*.sqlite
+*.tar
+*.zip
+*.gz
+
+# Node (if any frontend inside project)
+node_modules/
+npm-debug.log
+
+# Build outputs
+bin/
+obj/
+dist/
+build/
