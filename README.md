@@ -1,5 +1,6 @@
-# Washing-Machince-Service-Chatbot
-*A Streamlit + Ollama reference implementation*
+# Washing-Machince-Service-Chatbot (Streamlit + Ollama + RAG)
+
+This repository provides a ready-to-run Streamlit chatbot that uses a locally-hosted Ollama Qwen model enhanced with a Washing Machine Service Manual via RAG (FAISS). It includes an admin panel that logs queries and shows which manual chunks were retrieved for each reply.
 
 This chatbot helps service engineers diagnose washing-machine faults.  
 It combines:
@@ -9,8 +10,17 @@ It combines:
 * **Ollama (Qwen model)** – local LLM for answer generation  
 * **FAISS** – vector search over embeddings  
 * **Docker Compose** – one-command deployment (Ollama + Streamlit)
+  
+## What's included
+- `ingest.py` — Ingests a PDF manual, chunks text, generates embeddings via Ollama, and builds a FAISS index.
+- `streamlit_app.py` — Streamlit UI for engineers + admin page showing logs and retrieved contexts.
+- `requirements.txt`
+- `Dockerfile`
+- `.env.example`
+- `.gitignore`
+- `make_zip.sh` (helper)
 
----
+## Quick steps (summary)
 
 ### 1) Create and activate a virtual environment
 ```sh python -m venv venv
@@ -77,10 +87,23 @@ docker inspect --format "{{.State.Health.Status}}" ollama_server
  ```sh
  docker logs ollama_server
  ```
-#### 8) Access the app: Open http://localhost:8501 in your browser.
+#### 8) Access the app: 
+Open  http://localhost:8501 in your browser.
 
-#### 9)Monitor logs if issues persist:
+#### 9) Monitor logs if issues persist:
  ```sh
 docker logs -f wm_chatbot
 docker logs -f ollama_server
  ```
+> This sequence ensures Ollama starts healthy, the model is loaded, and LangChain uses the  correct base_url
+
+---
+
+## Helpful tips
+* Run all commands from the project root (where `docker-compose.yml` lives).  
+* Increase RAM in Docker Desktop to at least **4 GB** to avoid OOM exits.  
+* Change ports in `docker-compose.yml` if 8501 or 11434 are already in use.  
+* Monitor logs with `docker compose logs -f` for troubleshooting.  
+* Avoid running another `ollama serve` on the host while Docker is active to prevent port conflicts.  
+
+---
