@@ -93,7 +93,7 @@ docker inspect --format "{{.State.Health.Status}}" ollama_server
  ```
 #### 8) Access the app: 
 ```sh
-docker compose up –build
+docker compose up –-build
 ```
 Open  http://localhost:8501 in your browser.
 
