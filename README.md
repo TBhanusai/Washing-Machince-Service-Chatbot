@@ -92,6 +92,9 @@ docker inspect --format "{{.State.Health.Status}}" ollama_server
  docker logs ollama_server
  ```
 #### 8) Access the app: 
+```sh
+docker compose up –build
+```
 Open  http://localhost:8501 in your browser.
 
 #### 9) Monitor logs if issues persist:
