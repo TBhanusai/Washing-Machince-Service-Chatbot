@@ -48,6 +48,10 @@ ollama pull qwen:0.5b
 streamlit run app.py
  ```
 
+> ####  To stop a running Streamlit app in PowerShell (or any terminal/command prompt), you typically use a keyboard shortcut:
+Go to the PowerShell window where you originally ran the streamlit run app.py command.
+Press Ctrl + C on your keyboard.
+
 > The local route is handy for development; production deployment is containerised below.
 
 ---
