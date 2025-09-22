@@ -1,4 +1,4 @@
-# Washing-Machince-Service-Chatbot (Streamlit + Ollama + RAG)
+# 🤖 Washing-Machince-Service-Chatbot (Streamlit + Ollama + RAG)
 
 This repository provides a ready-to-run Streamlit chatbot that uses a locally-hosted Ollama Qwen model enhanced with a Washing Machine Service Manual via RAG (FAISS). It includes an admin panel that logs queries and shows which manual chunks were retrieved for each reply.
 
@@ -56,7 +56,7 @@ Press Ctrl + C on your keyboard.
 
 ---
 
-## B. Deploy with Docker Compose
+## Deploy with Docker Compose
 
 #### 1) Stop and remove any running containers/volumes to clear state:
 ```sh 
@@ -107,8 +107,7 @@ docker logs -f ollama_server
 ---
 
 ## Helpful tips
-* Run all commands from the project root (where `docker-compose.yml` lives).  
-* Increase RAM in Docker Desktop to at least **4 GB** to avoid OOM exits.  
+* Run all commands from the project root (where `docker-compose.yml` lives).   
 * Change ports in `docker-compose.yml` if 8501 or 11434 are already in use.  
 * Monitor logs with `docker compose logs -f` for troubleshooting.  
 * Avoid running another `ollama serve` on the host while Docker is active to prevent port conflicts.  
