@@ -50,7 +50,7 @@ pip install -r requirements.txt
 python ingest.py
  ```
 
-### 4) start Ollama and pull the model (Only if you are not using Docker)
+### 4) start Ollama and pull the model 
 
 ```sh
 ollama serve # new terminal, leaves it running
