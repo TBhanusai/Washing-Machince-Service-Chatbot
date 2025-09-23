@@ -19,7 +19,21 @@ It combines:
 - `.env.example`
 - `.gitignore`
 - `make_zip.sh` (helper)
+## Project Structure:
+```sh
+washing_machine_chatbot/
+├── data/
+│   └── Washing Machine Service Manual.pdf  # The input manual
+├── faiss_index/                     # Persisted vector database (FAISS)
+├── .gitignore
+├── requirements.txt                 # Python dependencies
+├── ingest.py                        # Script for manual processing & FAISS creation
+├── chatbot.py                       # Core RAG logic & LLM interaction
+├── app.py                           # Streamlit UI
+├── Dockerfile                       # Docker image definition for the chatbot
+└── docker-compose.yml               # Orchestration for multi-container deployment
 
+```
 ## Quick steps (summary)
 
 ### 1) Create and activate a virtual environment
