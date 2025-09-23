@@ -37,8 +37,9 @@ washing_machine_chatbot/
 ## Quick steps (summary)
 
 ### 1) Create and activate a virtual environment
-```sh python -m venv venv
-.\venv\Scripts\Activate.ps1 # Windows PowerShell
+```sh
+ python -m venv venv       # Create enivronment
+.\venv\Scripts\Activate.ps1 # Windows PowerShell , virtual environment
 ```
 ### 2) Install Python dependencies
 ```sh 
